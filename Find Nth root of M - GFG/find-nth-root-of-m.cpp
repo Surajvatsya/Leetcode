@@ -9,8 +9,8 @@ using namespace std;
 	int NthRoot(int n, int m)
 	{
 	    long long low=1,high=m;
-	    while(high>=low){
-	        long long mid=(low+high)/2;
+	    while(low<=high){
+	        long long mid=low + (high-low)/2;
 	        if(pow(mid,n)==m){
 	            return mid;
 	        }
