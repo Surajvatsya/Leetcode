@@ -29,9 +29,11 @@ public:
             int end = q.back().second ;
             ans = max(ans, end-start+1);
             int n = q.size();
+            
+            //rem i<q.size() ni likhna b/c q se bar bar delete ho rh h
             for(int i=0; i<n; i++){
                  pair<TreeNode*, int>temp = q.front();
-                  int idx = temp.second;
+                  int idx = temp.second - start   ;
                  q.pop();
               
                  if(temp.first->left!=NULL)
