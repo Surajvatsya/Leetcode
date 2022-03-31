@@ -48,7 +48,7 @@ class Solution
        int l = mx;
        int r = s;
        while(l<=r){
-           int mid = r+(l-r)/2;
+           int mid = l+(r-l)/2;
            if(isValid(mid,A,M,N))
         {
               r = mid-1;
