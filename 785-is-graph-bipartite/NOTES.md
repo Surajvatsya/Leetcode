@@ -1,0 +1,1 @@
+**rem** -> *always put the vertex which has been coloured*
