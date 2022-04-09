@@ -1,7 +1,9 @@
 class Solution {
 public:
     
-    void permute(vector<int>& nums, int l, int r, vector<vector<int>>&ans){
+     vector<vector<int>>ans;
+    
+    void permute(vector<int>& nums, int l, int r){
         if(l==r)
         {
             ans.push_back(nums);
@@ -13,7 +15,7 @@ public:
         swap(nums[l], nums[i]);
         
         //reccur
-        permute(nums, l+1,r,ans);
+        permute(nums, l+1,r);
         
         //undo 
             swap(nums[i], nums[l]);
@@ -23,10 +25,10 @@ public:
     }
     
     vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>>ans;
+       
         int l = 0;
         int r = nums.size()-1;
-        permute(nums,l,r,ans);
+        permute(nums,l,r);
         return ans;
     }
 };
