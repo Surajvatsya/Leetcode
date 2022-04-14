@@ -8,75 +8,43 @@ using namespace std;
 //that no two adjacent vertices of graph are coloured with same colour.
 
 
-// bool issafe(int node, int curr, bool graph[101][101], int n, vector<int>&color){
-//     for(int k=0; k<n; k++){
-//         if(k!=node and graph[node][k]==1 and color[k]==curr)
-//         return false;
-//     }
-//  return true;
-// }
-
-
-// bool solve(int node, bool graph[101][101], int m, int n, vector<int>&color){
-//     if(node == n)
-//     return true;
-//     for(int i=0; i<m; i++){
-//         if(issafe(node,i,graph,n,color)){
-//             //do
-//             color[node]=i;
-            
-//             //reccur
-//             if(solve(node+1, graph, m, n, color))
-//             return true;
-            
-//             //undo
-//             color[node]=-1;
-//         }
-        
-//     }
-//     return false;
-// }
-
-
-
-// bool graphColoring(bool graph[101][101], int m, int V)
-// {
-//     vector<int>color(m,-1);
-//   return  solve(0,graph,m,V,color);
-// }
-
-bool isSafe(int node, int color[], bool graph[101][101], int n, int col) {
-    for(int k = 0;k<n;k++) {
-        if(k != node && graph[k][node] == 1 && color[k] == col) {
-            return false; 
-        }
+bool issafe(int node, int curr, bool graph[101][101], int n, vector<int>&color){
+    for(int k=0; k<n; k++){
+        if( graph[node][k]==1 and color[k]==curr)
+        return false;
     }
-    return true; 
+ return true;
 }
-bool solve(int node, int color[], int m, int N, bool graph[101][101]) {
-    if(node == N) {
-        return true; 
-    }
-    
-    for(int i = 1;i<=m;i++) {
-        if(isSafe(node, color, graph, N, i)) {
-            color[node] = i;
-            if(solve(node+1, color, m, N, graph)) return true; 
-            color[node] = 0; 
+
+
+bool solve(int node, bool graph[101][101], int m, int n, vector<int>&color){
+    if(node == n)
+    return true;
+    for(int i=0; i<m; i++){
+        if(issafe(node,i,graph,n,color)){
+            //do
+            color[node]=i;
+            
+            //reccur
+            if(solve(node+1, graph, m, n, color))
+            return true;
+            
+            //undo
+            color[node]=-1;
         }
         
     }
-    return false; 
+    return false;
 }
 
-//Function to determine if graph can be coloured with at most M colours such
-//that no two adjacent vertices of graph are coloured with same colour.
-bool graphColoring(bool graph[101][101], int m, int N)
+
+
+bool graphColoring(bool graph[101][101], int m, int V)
 {
-    int color[N] = {0};
-    if(solve(0,color,m,N,graph)) return true; 
-    return false; 
+    vector<int>color(V,-1);
+  return  solve(0,graph,m,V,color);
 }
+
 
 // { Driver Code Starts.
 
