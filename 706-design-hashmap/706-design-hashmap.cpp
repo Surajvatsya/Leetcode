@@ -1,23 +1,52 @@
 class MyHashMap {
 public:
-    //brute force
-    //map index of array with the value
-    vector<int>v;
+    vector<list<pair<int,int>>>v;
+    int sz;
     MyHashMap() {
-        v = vector<int>(1e6+1,-1);
+        sz=1000;
+        v.resize(sz);
+    }
+    
+    int hash(int key){
+        return key%sz;
+    }
+    
+    auto search(int key){
+        int i = hash(key);
+        auto  it = v[i].begin();
+        for(  it = v[i].begin(); it!=v[i].end(); it++){
+            if(it->first == key)
+                return it;
+        }
+        return it;
     }
     
     void put(int key, int value) {
-        v[key]=value;
+        int i = hash(key);
+        auto it = search(key);
+        if(it!=v[i].end())
+            it->second = value;
+        
+        else
+        v[i].push_back({key,value});
     }
     
     int get(int key) {
-        
-            return v[key];
+        int i = hash(key);
+        auto it = search(key);
+        if(it!=v[i].end()){
+            return it->second;
+        }
+        else
+            return -1;
     }
     
     void remove(int key) {
-        v[key]=-1;
+        int i = hash(key);
+        auto it = search(key);
+        if(it!=v[i].end()){
+            v[i].erase(it);
+        }
     }
 };
 
