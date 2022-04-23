@@ -15,28 +15,23 @@ public:
             
             mp[m]++;
             
-            if(j-i+1==mp.size())
+            if(j-i+1 == mp.size())
             {
                 ans = max(ans, j-i+1);
                  j++;
                 
             }
-            else {
-                
-                            while(j-i+1 > mp.size()){
-
+            else if(j-i+1 > mp.size()) {
                             mp[s[i]]--;
                             if(mp[s[i]]==0)
                                 mp.erase(s[i]);
                             i++;
-
-                        }
-                j++;
+                            j++;
             }
             
         }
-         if(mp.size()>ans)
-                  ans = mp.size();
+         // if(mp.size()>ans)
+         //          ans = mp.size();
         return ans;
         
     }
