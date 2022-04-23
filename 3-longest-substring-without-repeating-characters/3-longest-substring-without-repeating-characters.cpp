@@ -7,7 +7,7 @@ public:
         
         unordered_map<char,int>mp;
         
-        int i=0, j=0, count=0,ans =0;
+        int i=0, j=0,ans = 0;
         
         while(j<n){
             
@@ -30,8 +30,7 @@ public:
             }
             
         }
-         // if(mp.size()>ans)
-         //          ans = mp.size();
+        
         return ans;
         
     }
