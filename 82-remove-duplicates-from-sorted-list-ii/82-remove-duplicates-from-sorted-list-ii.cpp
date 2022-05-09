@@ -28,9 +28,11 @@ public:
         ListNode*prev = dn;
         ListNode*nxt;
         
-        while(curr->next){
+        while(curr and curr->next){
             nxt = curr->next;
             
+            //always think khi nullptr ko access na krlo tm.
+            //suppose x->next likh rhe ho make sure that x isn't null.
             if(curr->val == nxt->val){
                  ListNode* temp = nxt;
                 while(temp and temp->val==nxt->val){
@@ -44,8 +46,7 @@ public:
                 prev = curr;
                  curr=nxt;
             }
-            if(!curr)
-                break;
+            
             
         }
         
