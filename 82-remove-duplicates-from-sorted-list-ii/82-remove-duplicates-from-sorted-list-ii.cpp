@@ -8,6 +8,12 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+
+// try to think edge cases 
+
+// concept -> prev curr nxt lekr chlo
+//jab v delete krna ho and link krna ho middle nodes me try 2 pointer concept
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
@@ -24,7 +30,8 @@ public:
         
         while(curr->next){
             nxt = curr->next;
-            if(nxt and curr->val == nxt->val){
+            
+            if(curr->val == nxt->val){
                  ListNode* temp = nxt;
                 while(temp and temp->val==nxt->val){
                     temp=temp->next;
@@ -33,7 +40,7 @@ public:
                 prev->next = curr;
                 
             }
-            else if(nxt and curr->val != nxt->val){
+            else if(curr->val != nxt->val){
                 prev = curr;
                  curr=nxt;
             }
