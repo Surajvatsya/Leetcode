@@ -19,12 +19,12 @@ public:
        
         
        for(int i=n-1; i>=0; i--){
-        int x3 = nums[i];
+        int x2 = nums[i];
            int x1 = mn[i];
           while(!st.empty() and st.top()<=x1 )
                st.pop();
            
-             while(!st.empty() and st.top()<x3 and st.top()>x1)
+             while(!st.empty() and st.top()<x2 and st.top()>x1)
               return true;
            
             
