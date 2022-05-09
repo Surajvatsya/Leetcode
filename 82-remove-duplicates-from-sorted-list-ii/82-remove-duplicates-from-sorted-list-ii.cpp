@@ -10,54 +10,38 @@
  */
 class Solution {
 public:
-    
-        
-        ListNode* del_node(ListNode*head, int data){
-        if(head == NULL)
-            return head;
-            
-        if(head->val == data)
-        {
-              head=head->next;
-              return head;
-        }
-        ListNode* temp = head;
-        ListNode*p;
-
-        //single node
-        if(temp->next == NULL)
-           {
-             temp=temp->next;
-             return head;
-	    }
-            
-        while(temp and temp->next and temp->next->val!=data){
-            temp=temp->next;
-        }
-        p = temp->next;
-        temp->next = p->next;
-        p->next=NULL;
-        delete p;
-        return head;
-    }
     ListNode* deleteDuplicates(ListNode* head) {
-         
-        if(head == NULL)
+        
+        if(!head)
             return head;
-        unordered_map<int,int>mp;
-        ListNode* temp = head;
-        while(temp){
-            mp[temp->val]++;
-            temp=temp->next;
+        
+        ListNode* dn = new ListNode(-1);
+        dn->next = head;
+        
+        ListNode*curr = head;
+        ListNode*prev = dn;
+        ListNode*nxt;
+        
+        while(curr->next){
+            nxt = curr->next;
+            if(nxt and curr->val == nxt->val){
+                 ListNode* temp = nxt;
+                while(temp and temp->val==nxt->val){
+                    temp=temp->next;
+                }
+                curr=temp;
+                prev->next = curr;
+                
+            }
+            else if(nxt and curr->val != nxt->val){
+                prev = curr;
+                 curr=nxt;
+            }
+            if(!curr)
+                break;
+            
         }
-        for(auto x: mp){
-            while(x.second>1){
-              for(int i = 0;i<x.second;i++){
-                  head = del_node(head, x.first); 
-              } 
-                x.second=0; 
-            }
-            }
-        return head;
+        
+        return dn->next;
     }
 };
