@@ -1,27 +1,41 @@
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-        vector<int>ans;
+        //map ka space complexcity = O(N)
+        // Islye make shorter array map
+         vector<int> ans(nums1.size(),-1);
         unordered_map<int,int>mp;
         
-        for(int i=0; i<nums2.size(); i++){
-            mp[nums2[i]]=i;
-        }
-        
         for(int i=0; i<nums1.size(); i++){
+            mp[nums1[i]]=i;
             
-            int ind = mp[nums1[i]];
-            int flag = 1;
-            for(int j = ind+1; j<nums2.size(); j++){
-                if(nums2[j]>nums1[i]){
-                    ans.push_back(nums2[j]);
-                    flag=0;
-                    break;
-                }
+        }
+        stack<int>st;
+        
+        for(int i=0; i<nums2.size(); i++){
+            
+            if(mp.find(nums2[i])!=mp.end()){
+                
+                if(st.empty() or  st.top()>nums2[i])
+                    st.push(nums2[i]);
+                
+                else{
+                     while(!st.empty() and st.top()<nums2[i]){
+                        ans[mp[st.top()]]=nums2[i];
+                        st.pop();
+                        }
+                st.push(nums2[i]);
+              }
             }
-            if(flag)
-                ans.push_back(-1);
+            else{
+                while(!st.empty() and st.top()<nums2[i]){
+                    ans[mp[st.top()]]=nums2[i];
+                    st.pop();    
+                    }
+            }
+            
         }
         return ans;
+        
     }
 };
