@@ -27,8 +27,9 @@ public:
     
     bool divisorGame(int n) {
          int dp[1001];
-        for(int i=0; i<1001; i++)
-            dp[i]=-1;
+        // for(int i=0; i<1001; i++)
+        //     dp[i]=-1;
+        memset(dp,-1,sizeof(dp));
         
        if(helper(n,dp))
            return true;
