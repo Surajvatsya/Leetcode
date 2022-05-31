@@ -26,7 +26,17 @@ int solve(int *arr, int i, int j, int n){
         
         // In exponential time algorithms, the growth rate doubles
         // with each addition to the input (n).
-         int  temp = solve(arr,i,k,n) + solve(arr,k+1,j,n) + (arr[i-1]*arr[k]*arr[j]);
+        int left,right;
+        if(t[i][k]!=-1)
+        left = t[i][k];
+        else
+        left = solve(arr,i,k,n);
+        if(t[k+1][j]!=-1)
+        right = t[k+1][j];
+        else
+        right = solve(arr,k+1,j,n);
+        
+         int  temp = left + right  + (arr[i-1]*arr[k]*arr[j]);
          ans = min(temp,ans);
          
         }
