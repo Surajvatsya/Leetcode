@@ -25,6 +25,8 @@ public:
                 mn = min(mn, matrix[i][j]);
             }
         }
+        
+        
         return mn;
     }
 };
