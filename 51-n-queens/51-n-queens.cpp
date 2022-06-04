@@ -1,13 +1,13 @@
 class Solution {
 public:
     
-    bool issafe(int x, int y, int n, vector<string>&v){
-        
-        for(int row = 0; row<=x; row++){
-            if(v[row][y]=='Q')
+    bool isValid(vector<string>&v, int x, int y, int n){
+        for(int i=0; i<=x; i++){
+            if(v[i][y]=='Q')
                 return false;
         }
-        int row = x;
+        
+         int row = x;
         int col = y;
         while(row>=0 and col>=0){
             if(v[row][col]=='Q')
@@ -15,9 +15,8 @@ public:
             row--;
             col--;
         }
-        
-        row = x;
-        col = y;
+         row = x;
+         col = y;
         while(row>=0 and col<n){
             if(v[row][col]=='Q')
                 return false;
@@ -26,41 +25,39 @@ public:
         }
         
         return true;
+        
     }
     
-    
-    void isnqueen( vector<vector<string>>& ans, vector<string>&v, int x, int n){
-        if(x>=n){
+    void solve(vector<vector<string>>&ans, vector<string>&v, int n, int x){
+        //base case
+        if(x==n)
+        {
             ans.push_back(v);
-            return ;
+            return;
         }
+        //check valid pos
         
         for(int col=0; col<n; col++){
-           
-            if(issafe(x,col,n,v)){
-                 //do
+            if(isValid(v,x,col,n)){
+                //do
                 v[x][col]='Q';
                 
-            //recurr
-            isnqueen(ans,v,x+1,n);
-        
-            
-            //undo
-            v[x][col]='.';
+                //recurr
+                solve(ans,v,n,x+1);
+                
+                //undo
+                v[x][col]='.';
             }
-                
-                
         }
         
     }
     
-    
     vector<vector<string>> solveNQueens(int n) {
-         vector<vector<string>> ans;
-         vector<string>v(n,string(n,'.'));
-        
-        isnqueen(ans, v,0,n);
-            
+        vector<vector<string>> ans;
+        vector<string>v(n,string(n,'.'));
+        int x=0;
+       
+        solve(ans,v,n,x);
         return ans;
         
     }
