@@ -23,11 +23,3 @@ mp[nums[i]]--;
 if(mp[nums[i]]==0)
 mp.erase(nums[i]);
 i++;
-}
-}
-j++;
-}
-return mx;
-}
-};
-```
