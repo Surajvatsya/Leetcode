@@ -1,0 +1,1 @@
+The pow() function takes ‘double’ as the arguments and returns a ‘double’ value. This function does not always work for integers.
