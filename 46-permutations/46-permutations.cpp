@@ -1,6 +1,9 @@
 class Solution {
 public:
     
+    //i l to r tak jayga
+    //hmlog bar bar l+1 pe call krnge
+    
      vector<vector<int>>ans;
     
     void permute(vector<int>& nums, int l, int r){
