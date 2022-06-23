@@ -23,6 +23,9 @@ public:
         //now check here agar n node hi hua to fast to null ho gya hoga iska matlab head wala ko hi delete krna h
       //  1 2 3 4 n=4
         
+//         [1,2]
+//         2
+        
         if(!fast)
             return head->next;
         
