@@ -4,6 +4,8 @@ public:
       vector<vector<int>> res(n,vector<int>(n));
         int top = 0, bottom = n-1, left = 0, right = n-1;
         int val = 1,direction=1;
+        
+        //NOTE left<=right && top<=bottom
         while(left<=right && top<=bottom)
         {
             if(direction == 1)    
