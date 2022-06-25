@@ -8,7 +8,7 @@ using namespace std;
 
 class Solution {
   public:
-  void dfs(vector<vector<int>> adj,int v,vector<bool> &visited)
+    void dfs(vector<vector<int>> adj,int v,vector<bool> &visited)
    {
        visited[v] = 1;
        for(int i=0;i<adj[v].size();i++)
@@ -17,7 +17,9 @@ class Solution {
                dfs(adj,i,visited);
        }
    }
-      int numProvinces(vector<vector<int>> adj, int V) {
+ 
+ 
+   int numProvinces(vector<vector<int>> adj, int V) {
        // code here
        int count = 0;
        vector<bool> visited(V,0);
@@ -31,10 +33,7 @@ class Solution {
        }
        return count;
    }
-    
 };
-
-
 
 // { Driver Code Starts.
 
