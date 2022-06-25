@@ -8,38 +8,7 @@ using namespace std;
 
 class Solution {
   public:
-  
-//   void dfs(vector<vector<int>> &adj, int src , vector<bool>&vis){
-//       vis[src]=true;
-//       for(auto &x:adj[src]){
-//           if(x==1 and !vis[x])
-//           dfs(adj, x, vis);
-//       }
-//   }
-    // int numProvinces(vector<vector<int>> adj, int V) {
-    //     // code here
-    //     int count = 0;
-    //     vector<bool>vis(V,false);
-    //     for(int i=0; i<V; i++){
-    //         if(!vis[i])
-    //         {
-    //             dfs(adj, i,vis);
-    //             count++;
-    //         }
-    //     }
-    //     return count;
-    // }
-    
-    
-    
-// geeteshp
-// 4 months ago
-
-// c++ dfs based approach
-
- 
-
-void dfs(vector<vector<int>> adj,int v,vector<bool> &visited)
+  void dfs(vector<vector<int>> adj,int v,vector<bool> &visited)
    {
        visited[v] = 1;
        for(int i=0;i<adj[v].size();i++)
@@ -48,9 +17,7 @@ void dfs(vector<vector<int>> adj,int v,vector<bool> &visited)
                dfs(adj,i,visited);
        }
    }
- 
- 
-   int numProvinces(vector<vector<int>> adj, int V) {
+      int numProvinces(vector<vector<int>> adj, int V) {
        // code here
        int count = 0;
        vector<bool> visited(V,0);
@@ -66,6 +33,8 @@ void dfs(vector<vector<int>> adj,int v,vector<bool> &visited)
    }
     
 };
+
+
 
 // { Driver Code Starts.
 
