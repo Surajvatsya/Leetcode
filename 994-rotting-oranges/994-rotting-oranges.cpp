@@ -9,7 +9,9 @@ public:
     
         
         
-        queue<pair<int,int>>q;
+        queue< pair<int,int> >q;
+        //queue to store index of rotten orange
+        
         int count=0;
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
@@ -22,12 +24,18 @@ public:
         
         if(count==0)
             return count;
-        cout<<count<<endl;
+        
+        // cout<<count<<endl;
+        
         int time = -1;
+        
         while(!q.empty()){
             time++;
             int sz = q.size();
             count-=sz;
+            
+            // q->{0,1}, {1,0};
+            
             for(int i=0; i<sz; i++){
                 pair<int,int> p = q.front();
                 q.pop();
@@ -50,7 +58,7 @@ public:
             
             
         }
-        cout<<count<<endl;
+        // cout<<count<<endl;
         
        return count==0?time:-1;
        
