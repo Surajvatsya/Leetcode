@@ -11,53 +11,51 @@ using namespace std;
 class Solution 
 {
     public:
+    
+    bool isPossible(int l,int r,int mid,int n,int *arr, int m){
+        int student = 1;
+        int sum = 0;
+        for(int i=0; i<n; i++){
+            sum+=arr[i];
+            if(sum>mid){
+                student++;
+                sum= arr[i];
+            }
+            if(student>m)
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
     //Function to find minimum number of pages.
-    
-   bool isValid(int mid,int A[],int M, int n){
-       int st=1;
-       int sm=0;
-    //   int n = sizeof(A)/sizeof(A[0]);
-       for(int i=0; i<n; i++){
-           sm+=A[i];
-           if(sm>mid)
-          {
-               st++;
-               sm=A[i];
-          }
-          if(st>M)
-          return false;
-       }
-       return true;
-   }
-    
-    int findPages(int A[], int N, int M) 
+    int findPages(int A[], int n, int m) 
     {
-        
-        if(N<M)
+        //N -> NO of books
+        //M -> no of students
+        if(n<m)
         return -1;
         
-       int mx = 0;
-       int ans = -1;
-       int s = 0;
-       for(int i=0; i<N; i++){
-           s+=A[i];
-           if(A[i]>mx)
-           mx=A[i];
-       }
-       
-       int l = mx;
-       int r = s;
-       while(l<=r){
-           int mid = l+(r-l)/2;
-           if(isValid(mid,A,M,N))
-        {
-              r = mid-1;
-              ans = mid;
+        int mx = 0;
+        int sum = 0;
+        for(int i=0; i<n; i++){
+            mx = max(mx, A[i]);
+            sum+=A[i];
         }
-           else
-           l=mid+1;
-       }
-       return ans;
+        int ans = -1;
+        int l = mx;
+        int r = sum;
+        while(l<=r){
+            int mid = l+(r-l)/2;
+            if(isPossible(l,r,mid,n,A,m)){
+                r=mid-1;
+                ans = mid;
+            }
+            else
+            l=mid+1;
+        }
+        return ans;
     }
 };
 
