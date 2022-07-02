@@ -20,9 +20,10 @@ class Solution
             if(sum>mid){
                 student++;
                 sum= arr[i];
-            }
-            if(student>m)
+                if(student>m)
             return false;
+            }
+            
         }
         return true;
     }
