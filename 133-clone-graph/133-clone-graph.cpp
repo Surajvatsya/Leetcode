@@ -33,7 +33,7 @@ public:
         queue<Node*> q;
         q.push(node);
         
-        
+        //1 copy bahar hi bna do
          //create a copy of original node
             Node* copy_node = new Node(node->val);
             
@@ -67,7 +67,7 @@ public:
                 }
         }
         
-        return mp[node];
+        return copy_node;
     }
 };
 
