@@ -23,3 +23,21 @@ return;
 inorder(root->left);
 v.push_back(root->val);
 inorder(root->right);
+}
+void inorders(TreeNode* root){
+if(!root)
+return;
+inorders(root->left);
+if(v[0]!=root->val){
+root->val = v[0];
+}
+v.erase(v.begin());
+inorders(root->right);
+}
+void recoverTree(TreeNode* root) {
+inorder(root);
+sort(v.begin(), v.end());
+inorders(root);
+}
+};
+```
