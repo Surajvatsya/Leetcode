@@ -11,22 +11,22 @@ public:
         }
         
         while(pq.size()>1){
-            int flag = 0;
+            // int flag = 0;
             int p = pq.top();
             pq.pop();
             int q;
-            if(pq.size()>0){
+            // if(pq.size()>0){
                  q = pq.top();
                 pq.pop();
-                flag = 1;
-            }
+                // flag = 1;
+            // }
             
-            if(flag) {
+            // if(flag) {
                 if(p!=q)
                     pq.push(abs(p-q));
-                cout<< p-q <<endl;
+                // cout<< p-q <<endl;
                     
-            }
+            // }
         }
         
         if(pq.size()==0)
