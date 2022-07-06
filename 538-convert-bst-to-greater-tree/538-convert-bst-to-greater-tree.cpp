@@ -11,51 +11,51 @@
  */
 class Solution {
 public:
-    int s= 0;
-    void preorder(TreeNode* root,  vector<int>&v){
-        if(!root)
-            return;
-        s+=root->val;
-        v.push_back(root->val);
-        preorder(root->left, v);
-        preorder(root->right, v);
-    }
     
-    
-    void traverse(TreeNode* root,  unordered_map<int, int> &mp){
+    void inorder(TreeNode* root,  vector<int> &v){
         if(!root)
-            return;
-        int temp = root->val;
-        int replace = mp[temp];
-        root->val = replace;
+            return ;
        
-        traverse(root->left, mp);
-        traverse(root->right, mp);
+        //inorder left
+        inorder(root->left, v);
+        //business
+        v.push_back(root->val);
+        //right
+        inorder(root->right, v);
     }
+    void change(TreeNode* root,  vector<int> &v){
+        if(!root)
+            return ;
+        // cout<<1;
+        //inorder left
+        change(root->left, v);
+        //business
+           root->val = v[0];
+           v.erase(v.begin() + 0);
+        //right
+        change(root->right, v);
+         
+    }
+    
     
     TreeNode* convertBST(TreeNode* root) {
-        vector<int>v;
-        unordered_map<int, int> mp;
-        
         if(!root)
             return root;
-        preorder(root, v);
-        sort(v.begin(), v.end());
-        int sum = 0;
+        
+        //find inorder
+        vector<int> v;
+        inorder(root,v);
+        
         int n = v.size();
-         vector<int>t(n);
-        t[0] = s;
-        for(int i=1; i<v.size(); i++){
-            sum+=v[i-1];
-            t[i]=s-sum;
-            
+       
+        long s=0;
+        for(int i=n-1; i>=0; i--){
+            s+=v[i];
+            v[i]=s;
         }
+         // cout<<s;
         
-        for(int i=0; i<n; i++){
-            mp[v[i]]=t[i];
-        }
-        
-        traverse(root, mp);
+        change(root,v);
         return root;
     }
 };
