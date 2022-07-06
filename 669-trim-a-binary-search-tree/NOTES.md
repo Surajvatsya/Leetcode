@@ -1,1 +1,1 @@
-deletenode ko bar bar call krte rho
+​
