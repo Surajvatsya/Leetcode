@@ -12,9 +12,7 @@
 class Solution {
 private:
     bool palindrome(vector<int>v){
-        // for(int i=0; i<v.size(); i++)
-        //     cout<<v[i]<<" ";
-        // cout<<endl;
+        
         int i=0; int j = v.size()-1;
         while(i<j){
             if(v[i]!=v[j])
