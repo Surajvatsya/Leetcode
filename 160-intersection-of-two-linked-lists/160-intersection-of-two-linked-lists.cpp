@@ -8,35 +8,22 @@
  */
 class Solution {
 public:
-    
-    int getLength(ListNode *headA){
-        if(!headA)
-            return 0;
-        int count=0;
-        while(headA)
-        {
-             count++;
-            headA=headA->next;
-        }
-        return count;
-    }
+   
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-      int l1 =  getLength(headA);
-        int l2 = getLength(headB);
-        while(l1>l2){
-            headA=headA->next;
-            l1--;
+        if(!headA or !headB)
+            return NULL;
+         set<ListNode*>mp;
+        ListNode *temp1 = headA;
+        while(temp1){
+            mp.insert(temp1);
+            temp1=temp1->next;
         }
-        while(l2>l1){
-             headB=headB->next;
-            l2--;
-        }
-        while(headA!=headB){
-            headA=headA->next;
-            headB=headB->next;
-            if(!headA or !headB)
-                return NULL;
-        }
-        return headA;
+        ListNode *temp2 = headB;
+      while(temp2){
+            if(mp.find(temp2)!=mp.end())
+                return temp2;
+          temp2=temp2->next;
+        }  
+        return NULL;
     }
 };
