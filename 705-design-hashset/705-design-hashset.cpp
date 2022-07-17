@@ -1,43 +1,38 @@
 class MyHashSet {
 public:
-    
-    vector<list<int>>v;
-    int sz;
-    
-    //always initialize inside constructor
-    MyHashSet(){
-        sz = 100;
-        v.resize(sz);
-    }
-    
-    int hash(int key){
-        return key%sz;
-    }
-    
-    auto search(int key){
-        int i = hash(key);
-        return find(v[i].begin(), v[i].end(), key);
+     vector<list<int>>v;
+    int n;
+    MyHashSet() {
+       n = 10;
+        v=vector<list<int>>(n);
     }
     
     void add(int key) {
+        //contain check impo nhi to duplicate v insert ho jayga
         if(contains(key))
             return;
-        int i = hash(key);
-        v[i].push_back(key);
-        
+       int ind =key%n;
+        v[ind].push_back(key);
     }
     
     void remove(int key) {
-         if(!contains(key))
-             return ;
-        int i = hash(key);
-        v[i].erase(search(key));
+        if(!contains(key))
+            return;
+         int ind =key%n;
+        //find position
+        auto x = find(v[ind].begin(), v[ind].end(), key);
+        
+        // delete that position
+        v[ind].erase(x);
+          
     }
     
     bool contains(int key) {
-        int i  = hash(key);
-        if(search(key)!=v[i].end())
-            return true;
+         int ind =key%n;
+        
+        //rem this
+         if(  find(v[ind].begin(), v[ind].end(), key) != v[ind].end() )
+             return true;
         return false;
     }
 };
