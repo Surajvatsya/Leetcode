@@ -18,13 +18,14 @@ public:
             if(head->val==data)
             {
                  head=head->next;
+                //impo line ...nhi to niche ka chal jayga
                 return head;
             }
             
-            //single node
-            if(head->next==NULL)
-                if(head->val==data)
-                    head=head->next;
+            // //single node
+            // if(head->next==NULL)
+            //     if(head->val==data)
+            //         head=head->next;
                 
              ListNode* temp = head;
             while(temp and temp->next){
