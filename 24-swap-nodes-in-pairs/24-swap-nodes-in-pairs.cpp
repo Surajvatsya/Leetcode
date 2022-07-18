@@ -15,18 +15,19 @@ public:
         ListNode*ans = head->next;
         ListNode*i = head;
        
-        int flag = 0;
+      
         
         while(1){
             ListNode*j = i->next;
            ListNode*temp = j->next;
             j->next = i;
+            
            //even or odd case
             if(!temp or !temp->next){
                 i->next=temp;
                 break;
             }
-           
+           //rem
             i->next=temp->next;
              i=temp;
            
