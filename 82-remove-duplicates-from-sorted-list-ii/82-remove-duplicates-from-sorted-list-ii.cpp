@@ -8,48 +8,80 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-
-
-// try to think edge cases 
-
-// concept -> prev curr nxt lekr chlo
-//jab v delete krna ho and link krna ho middle nodes me try 2 pointer concept
 class Solution {
-public:
+public:    
+        ListNode* del_node(ListNode*head, int data){
+        if(head == NULL)
+            return head;
+            
+            
+            if(head->val==data)
+            {
+                 head=head->next;
+                return head;
+            }
+            
+            //single node
+            if(head->next==NULL)
+                if(head->val==data)
+                    head=head->next;
+                
+             ListNode* temp = head;
+            while(temp and temp->next){
+                //yha temp ka value compare nai hua h, temp ka next ka, suppose temp ka value hi data k brabar hua to
+                if(temp->next->val==data){
+                    ListNode* p = temp->next;
+                    temp->next=p->next;
+                    delete p;
+                    return head;
+                }
+                temp=temp->next;
+            }
+            return head;
+            
+            
+//         if(head->val == data)
+//         {
+//               head=head->next;
+//               return head;
+//         }
+//         ListNode* temp = head;
+//         ListNode*p;
+
+//         //single node
+//         if(temp->next == NULL)
+//            {
+//              temp=temp->next;
+//              return head;
+// 	    }
+            
+//         while(temp and temp->next and temp->next->val!=data){
+//             temp=temp->next;
+//         }
+//         p = temp->next;
+//         temp->next = p->next;
+//         p->next=NULL;
+//         delete p;
+//         return head;
+    }
     ListNode* deleteDuplicates(ListNode* head) {
         
-        if(!head)
+        if(head == NULL)
             return head;
-        
-        ListNode* dn = new ListNode(-1);
-        dn->next = head;
-        
-        ListNode*curr = head;
-        ListNode*prev = dn;
-        ListNode*nxt;
-        
-        while(curr and curr->next){
-            nxt = curr->next;
-            
-            //always think khi nullptr ko access na krlo tm.
-            //suppose x->next likh rhe ho make sure that x isn't null.
-            if(curr->val == nxt->val){
-                 ListNode* temp = nxt;
-                while(temp and temp->val==nxt->val){
-                    temp=temp->next;
-                }
-                curr=temp;
-                prev->next = curr;
-                
-            }
-            else if(curr->val != nxt->val){
-                prev = curr;
-                 curr=nxt;
-            }
-            
-            
+        unordered_map<int,int>mp;
+        ListNode* temp = head;
+        while(temp){
+            mp[temp->val]++;
+            temp=temp->next;
         }
-        
-        return dn->next;
+        for(auto x: mp){
+            while(x.second>1){
+              for(int i = 0;i<x.second;i++){
+                  head = del_node(head, x.first); 
+                } 
+                x.second=0; 
+              }
+            }
+        return head;
     }
 };
