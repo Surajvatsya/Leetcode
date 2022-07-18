@@ -21,30 +21,15 @@ public:
     Node* connect(Node* root) {
         if(!root)
             return root;
-        queue<Node*>q;
-        q.push(root);
-        while(!q.empty()){  
-            int n = q.size();
-          for(int i=0; i<n; i++){
-              
-              Node* singleNode = q.front();
-                q.pop();
-                if(i==n-1)
-                    singleNode->next = NULL;
-                else{
-                    singleNode -> next = q.front();
-                }
+        if(root->left!=NULL)
+            root->left->next=root->right;
         
-                if(singleNode->left)  q.push(singleNode->left);
-                if(singleNode->right) q.push(singleNode->right);    
-          }
-        }
+        if(root->next!=NULL and root->right!=NULL)
+            root->right->next = root->next->left;
         
-            
-            
-            return root;
-            
-        }
+        connect(root->left);
+        connect(root->right);
+        return root;
         
-    
+    }
 };
