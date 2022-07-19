@@ -11,25 +11,26 @@
  */
 class Solution {
 public:
-    TreeNode* newnode= new TreeNode(0);
-    TreeNode* head = newnode;
-    void inorder(TreeNode*root){
-        if(!root)return;
-        inorder(root->left);
-        //do operation whatever u want to
-        
-        newnode->right=new TreeNode(root->val);
-        newnode=newnode->right;
-        inorder(root->right);
-    }
+      void solve(TreeNode* root, TreeNode* &temp){
+          if(!root)
+              return;
+           solve(root->left,temp);
+           TreeNode* nn = new TreeNode(root->val);
+          temp->right=nn;
+          temp=nn;
+          solve(root->right,temp); 
+           
+      }
+    
+    
     TreeNode* increasingBST(TreeNode* root) {
-        if(!root) return root;
-        inorder(root);
-        return head->right;
+        if(!root)
+            return root;
+        
+        TreeNode* dn = new TreeNode(-1);
+        TreeNode*temp = dn;
+        solve(root,temp);
+            return dn->right;
+        
     }
 };
-
-//Time Complexity: O(N), where NN is the number of nodes in the given tree. b/c u visited every node
-
-//sc = O(h)  where HH is the height of the given tree, 
-// worst case me sc = o(N) skew tree me, otherwise O(logn)
