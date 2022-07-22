@@ -18,18 +18,3 @@ else{
 while(!st.empty() and st.top()<nums2[i]){
 ans[mp[st.top()]]=nums2[i];
 st.pop();
-}
-st.push(nums2[i]);
-}
-}
-else{
-while(!st.empty() and st.top()<nums2[i]){
-ans[mp[st.top()]]=nums2[i];
-st.pop();
-}
-}
-}
-return ans;
-}
-};
-```
