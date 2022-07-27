@@ -1,34 +1,51 @@
 class Solution {
 public:
     string minRemoveToMakeValid(string s) {
-        int n = s.length();
+         string ans = "";
         stack<int>st;
-        for(int i =0;i<s.length();i++){
-            //yha par i<n ni likh skte ho bcs 
-            //You are removing elements from list which changes the size. This will lead to                    accessing elements beyond your list.
-            if(s[i]=='(')
-                st.push(i);
-            
-            if(s[i]==')')
-            {
-                if(!st.empty())
-                    st.pop();
-                 else
-                s.erase(s.begin()+i--);
-                //why here i--
-                //Input: s = "lee(t(c)o)de)"
-                // Output: "lee(t(c)o)de"
-                
-            }
-        }
-    
-        while(!st.empty()){
-            //Input: s = "))(("
-                //Output: ""
-            s.erase(s.begin()+st.top());
-            st.pop();
-        }
-        return s;
-    }
         
+        for(int i=0; i<s.length(); i++){
+           
+            if(s[i]=='('){
+               st.push(i); 
+                 
+            }
+                
+            else if(s[i]==')'){
+                
+                //rem for all concept in stack everytime
+                
+                //before that you have to check wheather st.top exist or not means its empty or not
+                if( !st.empty() )
+                {
+                     st.pop();
+                   
+                }
+                else
+                {
+                    //rem this step
+                     s.erase(s.begin()+i); 
+                    i--;
+                    // cout<<s<<endl;
+                   
+                }
+               
+            }
+             
+        }
+        
+        
+        while(!st.empty()){
+            int i = st.top();
+            
+            st.pop();
+           s[i]='*';
+        }
+        // cout<<s<<endl;
+        for(auto &x : s )
+            if(x!='*')
+                ans+=x;
+        
+        return ans;
+    }
 };
