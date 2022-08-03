@@ -9,11 +9,11 @@ public:
     }
     
     bool book(int start, int end) {
-        if(mp.empty())
-        {
-            mp[{start,end}]=1;
-            return true;
-        }
+        // if(mp.empty())
+        // {
+        //     mp[{start,end}]=1;
+        //     return true;
+        // }
         
         for(auto &x : mp){
             pair<int,int> p = x.first;
