@@ -16,7 +16,7 @@ public:
         for(int i=1; i*i<=n and n%i==0; i++){
             if(helper(n-i,a)==0)
                 //it means helper(i) is the winner bcs helper(i-1) can't  next move
-               return a[n-i]=1;
+               return a[n]=1;
             if(i!=1 and helper(n-(n/i),a)==0 )
                  return a[n-(n/i)]=1;
         }
