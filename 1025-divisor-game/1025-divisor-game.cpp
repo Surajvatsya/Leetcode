@@ -1,40 +1,37 @@
 class Solution {
 public:
-    //practical copy page no 20
-    //thora iterative socho
- 
-    
-   
-    int helper(int n, int *a){
-        //no next move if you got n==1
+    bool solve(int n, vector<int>&v){
+        
         if(n==1)
-            return 0;
+            return false;
         
-        if(a[n]!=-1)
-            return a[n];
-        //explore all possiblities until n unless we dont get any no where that                     player           is winning
-        for(int i=1; i*i<=n and n%i==0; i++){
-            if(helper(n-i,a)==0)
-                //it means helper(i) is the winner bcs helper(i-1) can't  next move
-               return a[n]=1;
-            if(i!=1 and helper(n-(n/i),a)==0 )
-                 return a[n-(n/i)]=1;
+        if(v[n]!=-1)
+            return v[n];
+        
+       
+        
+        for(int i=1; i*i<=n and  n%i == 0 ; i++){
+            
+           
+                if(!divisorGame(n-i)){
+                   return v[n] = true;
+                }
+                 if(i!=1 and !divisorGame(n-(n/i))){
+                   return v[n-(n/i)] = true;
+                }
+                
+                 
         }
-        
-        
-        //from 1 to n if I dont have any possiblities where helper(i-1)==0 it means                 helper(i)->player 1 is not winning helper(i-1) is winning
-        return a[n]=0;
+        return v[n] = false;
         
     }
     
+    
     bool divisorGame(int n) {
-         int dp[1001];
-        // for(int i=0; i<1001; i++)
-        //     dp[i]=-1;
-        memset(dp,-1,sizeof(dp));
+        vector<int>v(n+1,-1);
         
-       if(helper(n,dp))
-           return true;
-        return false;
+        return solve(n, v);
+        
+     
     }
 };
