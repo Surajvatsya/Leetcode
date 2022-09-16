@@ -11,33 +11,30 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        if(head->next==NULL)
-            return true;
-        
-        ListNode*slow = head;
-        ListNode*fast = head;
+        ListNode* slow = head;
+        ListNode* fast = head;
         ListNode* prev = NULL;
-        ListNode* nxtptr;
-        while(fast and fast->next){
+        ListNode* nxt;
+        
+        while(fast!=NULL and  fast->next){
             fast = fast->next->next;
-            nxtptr = slow->next;
-            slow->next=prev;
-            prev=slow;
-            slow=nxtptr;
-           
-            // this is wrong bcs fast next is null right now
-            // fast = fast->next->next;
-            
+            nxt = slow->next;
+            slow->next = prev;
+            prev = slow;
+            slow = nxt;
         }
         
-        slow = fast? slow->next :slow  ;
         
-        while(slow){
+        slow = fast? slow->next: slow;
+        
+        
+        while(prev){
             if(slow->val!=prev->val)
                 return false;
             slow=slow->next;
             prev=prev->next;
         }
         return true;
+        
     }
 };
