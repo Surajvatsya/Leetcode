@@ -1,1 +1,1 @@
-​
+https://leetcode.com/problems/fix-names-in-a-table/discuss/1963494/Detailed-explanation-of-QUERY-and-Functions-that-are-required-to-solve-this
