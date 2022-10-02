@@ -1,0 +1,1 @@
+not in where k baad aata h
