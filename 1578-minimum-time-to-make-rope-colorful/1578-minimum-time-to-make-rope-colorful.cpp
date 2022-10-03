@@ -3,41 +3,30 @@ class Solution
     public:
         int minCost(string colors, vector<int> &t)
         {
-            int ans = 0;
-               int n = colors.size();
-            
+             int n = colors.size();
             if(n==1)
                 return 0;
             
-            priority_queue<int, vector < int>, greater < int>> pq;
-
-            for (int i = 0; i < colors.size() - 1; i++)
+           	//optimized
+           
+            int mx_t = 0;
+            int s = 0;
+            int ans = 0;
+            for (int i = 0; i < n; i++)
             {
-                if (colors[i] == colors[i + 1])
-                {
-                    pq.push(t[i]);
+                if (i > 0 and  colors[i] !=  colors[i - 1]) {
+                    ans+=s-mx_t;
+                    s=0;
+                    mx_t=0;
                 }
-                else
-                {
-                    pq.push(t[i]);
-                    while (pq.size() > 1)
-                    {
-                        ans += pq.top();
-                        pq.pop();
-                    }
-                    pq.pop();
-                }
+                
+                    mx_t=max(mx_t, t[i]);
+                    s+=t[i];
+                
             }
-         
-            if (colors[n - 1] == colors[n - 2])
-            {
-                pq.push(t[n - 1]);
-                while (pq.size() > 1)
-                {
-                    ans += pq.top();
-                    pq.pop();
-                }
-            }
+            
+              ans+=s-mx_t;
+            
             return ans;
         }
 };
