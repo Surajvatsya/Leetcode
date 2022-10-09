@@ -75,17 +75,7 @@ class Solution
         }
         v[3][1] = 0;
 
-        // int dp[n + 1][4][4];
-        // for (int i = 0; i < n + 1; i++)
-        // {
-        //     for (int j = 0; j < 4; j++)
-        //     {
-        //         for (int k = 0; k < 4; k++)
-        //         {
-        //             dp[i][j][k] = -1;
-        //         }
-        //     }
-        // }
+        
         
         vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(4, vector<int>(3,-1))); 
         
