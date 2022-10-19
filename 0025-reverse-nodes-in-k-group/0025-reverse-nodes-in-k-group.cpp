@@ -11,31 +11,38 @@
 class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
-        //base case
-        //if k element ios not there
+        //k=2
+        //check if atleast k element is present or not
         ListNode* temp = head;
         for(int i=0; i<k; i++){
-            if(!temp)
+            
+            if(temp==NULL)
                 return head;
             
-            temp = temp->next;
+            temp=temp->next;
         }
         
         
-        //reverse k element
-        ListNode* curr = head;
-        ListNode*  nxt;
+        //we know that we have atleast k nodes present in our ll, so reverse k node
+        
         ListNode* prev = NULL;
-      for(int i=0; i<k; i++)  {
-            nxt = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr= nxt;
+        ListNode* curr = head;
+        ListNode* nxt ;
+        
+        for(int i=0; i<k; i++){
+            nxt = curr->next; // nxt = 2
+            curr->next = prev;// 1->null
+            prev = curr;//prev = 1
+            curr = nxt;//curr = 2
         }
         
-        if(curr)
-            head->next = reverseKGroup( curr,  k);
+        if(curr!=NULL)
+        head->next =  reverseKGroup( curr,  k);
         
         return prev;
+        
+        
+        
+        
     }
 };
